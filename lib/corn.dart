@@ -16,6 +16,17 @@ class YellowCorn extends GameDecoration with Sensor {
         );
 
   @override
+  void onMount() {
+    add(
+      TimerComponent(
+        period: 20,
+        onTick: () => removeFromParent(),
+      ),
+    );
+    super.onMount();
+  }
+
+  @override
   void onContact(GameComponent component) {
     if (component is GamePlayer) {
       component.gameController.incrementPoints();
@@ -38,6 +49,17 @@ class BlueCorn extends GameDecoration with Sensor {
   }
 
   @override
+  void onMount() {
+    add(
+      TimerComponent(
+        period: 15,
+        onTick: () => removeFromParent(),
+      ),
+    );
+    super.onMount();
+  }
+
+  @override
   void onContact(GameComponent component) {
     if (component is GamePlayer) {
       component.gameController.incrementPoints(count: 5);
@@ -56,6 +78,17 @@ class RedCorn extends GameDecoration with Sensor {
           position: position,
           size: Vector2.all(16 * 0.65),
         );
+
+  @override
+  void onMount() {
+    add(
+      TimerComponent(
+        period: 10,
+        onTick: () => removeFromParent(),
+      ),
+    );
+    super.onMount();
+  }
 
   @override
   void onContact(GameComponent component) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pikpik/aunt.dart';
 
 class PikPikController extends ChangeNotifier {
-  static const int kGameTime = 150;
+  static const int kGameTime = 120;
 
   late BonfireGame _game;
   BonfireGame get game => _game;

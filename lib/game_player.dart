@@ -119,6 +119,7 @@ class GamePlayer extends SimplePlayer with ObjectCollision, ChangeNotifier {
 //Die
   @override
   void die() async {
+    idle();
     stopCorn();
     gameController.finishGame(context);
 
