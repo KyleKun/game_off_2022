@@ -7,7 +7,6 @@ import 'package:pikpik/corn.dart';
 import 'pikpik_controller.dart';
 
 const tileSize = 16.0;
-bool playerCanMove = true;
 double life = 120;
 
 class GamePlayer extends SimplePlayer with ObjectCollision, ChangeNotifier {
@@ -116,7 +115,14 @@ class GamePlayer extends SimplePlayer with ObjectCollision, ChangeNotifier {
     super.update(dt);
   }
 
-//Die
+  @override
+  void joystickChangeDirectional(JoystickDirectionalEvent event) {
+    if (gameController.lockMove) {
+      return;
+    }
+    super.joystickChangeDirectional(event);
+  }
+
   @override
   void die() async {
     idle();

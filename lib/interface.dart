@@ -1,7 +1,54 @@
-import 'package:bonfire/bonfire.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:bonfire/bonfire.dart' hide Timer;
+import 'package:flutter/material.dart';
 import 'pikpik_controller.dart';
+
+class TimerInterface extends StatefulWidget {
+  final BonfireGame game;
+
+  const TimerInterface({super.key, required this.game});
+
+  @override
+  State<TimerInterface> createState() => _TimerInterfaceState();
+}
+
+class _TimerInterfaceState extends State<TimerInterface> {
+  late Timer timer;
+  int timeRemaining = 3;
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {
+        timeRemaining -= 1;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Center(
+          child: Text(
+            timeRemaining.toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class PlayerInterface extends StatefulWidget {
   final BonfireGame game;

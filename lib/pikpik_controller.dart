@@ -11,10 +11,12 @@ class PikPikController extends ChangeNotifier {
   int _points = 0;
   int _timeRemaining = kGameTime;
   bool _isGameRunning = true;
+  bool _lockMove = false;
 
   int get points => _points;
   int get timeRemaining => _timeRemaining;
   bool get isGameRunning => _isGameRunning;
+  bool get lockMove => _lockMove;
 
   void setGame(BonfireGame game) {
     _game = game;
@@ -27,8 +29,7 @@ class PikPikController extends ChangeNotifier {
   }
 
   void decreaseTime({int count = 1}) {
-    if (timeRemaining == 0) return;
-    if (!_isGameRunning) _timeRemaining = 1;
+    if (timeRemaining == 0 || !_isGameRunning) return;
     _timeRemaining -= count;
     notifyListeners();
   }
@@ -43,7 +44,7 @@ class PikPikController extends ChangeNotifier {
   void restartGame(BuildContext context) {
     _points = 0;
     _timeRemaining = kGameTime;
-    _isGameRunning = true;
+    _lockMove = true;
     notifyListeners();
     Navigator.pop(context);
     game.player!.revive();
@@ -59,6 +60,13 @@ class PikPikController extends ChangeNotifier {
     game.add(Aunt(position: Vector2(40 * 16, 7 * 16)));
     game.add(Aunt(position: Vector2(6 * 16, 6 * 16)));
     game.add(Aunt(position: Vector2(4 * 16, 16 * 16)));
+    game.overlayManager.add('timer');
+    Future.delayed(const Duration(seconds: 3), () {
+      game.overlayManager.remove('timer');
+      _isGameRunning = true;
+      _lockMove = false;
+      notifyListeners();
+    });
   }
 
   void showPlayAgainPopup(BuildContext context) {

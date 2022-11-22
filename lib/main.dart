@@ -65,6 +65,7 @@ class _MyAppState extends State<MyApp> implements GameListener {
           ],
           overlayBuilderMap: {
             'points': ((context, game) => PlayerInterface(game: game)),
+            'timer': ((context, game) => TimerInterface(game: game)),
           },
           showCollisionArea: true,
           //Joystick
