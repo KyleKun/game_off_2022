@@ -1,6 +1,9 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:pikpik/aunt.dart';
+import 'package:pikpik/fancy_button.dart';
+
+import 'sounds_manager.dart';
 
 class PikPikController extends ChangeNotifier {
   static const int kGameTime = 120;
@@ -49,6 +52,7 @@ class PikPikController extends ChangeNotifier {
     Navigator.pop(context);
     game.player!.revive();
     game.player!.idle();
+    game.camera.moveToPlayerAnimated();
     game.player!.position = Vector2(23 * 16, 10 * 16);
     game.enemies().forEach((element) {
       element.removeFromParent();
@@ -62,6 +66,7 @@ class PikPikController extends ChangeNotifier {
     game.add(Aunt(position: Vector2(4 * 16, 16 * 16)));
     game.overlayManager.add('timer');
     Future.delayed(const Duration(seconds: 3), () {
+      SoundsManager.resumeBgm();
       game.overlayManager.remove('timer');
       _isGameRunning = true;
       _lockMove = false;
@@ -88,23 +93,33 @@ class PikPikController extends ChangeNotifier {
           child: Center(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.amberAccent,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(30.0),
-                border: Border.all(width: 5.0, color: Colors.pinkAccent),
+                border: Border.all(width: 5.0, color: Colors.amber),
               ),
               height: 200,
               width: 500,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Total points: $_points',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  FancyButton(
+                    color: Colors.green,
+                    size: 50.0,
                     onPressed: () {
                       restartGame(context);
                     },
-                    child: const Text('Play again'),
+                    child: const Text(
+                      'Play again',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                 ],
               ),

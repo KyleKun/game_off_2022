@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:pikpik/game_player.dart';
+import 'package:pikpik/sounds_manager.dart';
 
 enum CornType {
   yellow,
@@ -30,6 +31,7 @@ class YellowCorn extends GameDecoration with Sensor {
   void onContact(GameComponent component) {
     if (component is GamePlayer) {
       component.gameController.incrementPoints();
+      SoundsManager.coin();
       removeFromParent();
     }
   }
@@ -63,6 +65,7 @@ class BlueCorn extends GameDecoration with Sensor {
   void onContact(GameComponent component) {
     if (component is GamePlayer) {
       component.gameController.incrementPoints(count: 5);
+      SoundsManager.coin();
       removeFromParent();
     }
   }
@@ -94,6 +97,7 @@ class RedCorn extends GameDecoration with Sensor {
   void onContact(GameComponent component) {
     if (component is GamePlayer) {
       component.gameController.incrementPoints(count: 20);
+      SoundsManager.coin();
       removeFromParent();
     }
   }

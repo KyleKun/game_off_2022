@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:pikpik/corn.dart';
+import 'package:pikpik/sounds_manager.dart';
 
 import 'pikpik_controller.dart';
 
@@ -59,6 +60,7 @@ class GamePlayer extends SimplePlayer with ObjectCollision, ChangeNotifier {
 
     gameRef.add(gameTimer);
     gameTimer.timer.start();
+    gameController.game.camera.moveToPlayerAnimated();
 
     /// Yellow corn
     yellowCornTimer = TimerComponent(
@@ -125,6 +127,8 @@ class GamePlayer extends SimplePlayer with ObjectCollision, ChangeNotifier {
 
   @override
   void die() async {
+    SoundsManager.pauseBgm();
+    SoundsManager.cocorico();
     idle();
     stopCorn();
     gameController.finishGame(context);

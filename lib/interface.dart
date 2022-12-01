@@ -42,7 +42,7 @@ class _TimerInterfaceState extends State<TimerInterface> {
         child: Center(
           child: Text(
             timeRemaining.toString(),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.black, fontSize: 64.0),
           ),
         ),
       ),
@@ -100,23 +100,24 @@ class _PlayerInterfaceState extends State<PlayerInterface> {
     return SafeArea(
       child: Container(
         color: Colors.transparent,
-        width: 300,
+        width: double.infinity,
         height: 100,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                points,
+                'Points: $points',
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 24,
                   color: Colors.black,
                 ),
               ),
               Text(
-                time,
+                'Time remaining: $time',
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 24,
                   color: Colors.red,
                 ),
               ),
