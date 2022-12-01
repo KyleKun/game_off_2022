@@ -1,16 +1,37 @@
 # pikpik
 
-A new Flutter project.
+Play at: https://kylekun.itch.io/pikpik
 
-## Getting Started
+### Cliché Theme: Grain by grain and the hen fills her belly.
 
-This project is a starting point for a Flutter application.
+In this game you control a crazy chicken trying to eat the most corn grains possible in just 2 minutes, without being caught by the old ladies!
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Instructions:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Use WASD or Arrows to move;
+
+- Avoid the old ladies;
+
+- Eat the corn before it disappears.
+
+
+## Points system:
+
+- Yellow Corn: 1 point!
+
+- Blue Corn: 5 points!!
+
+- Red Corn: 20 points!!!
+
+
+
+## Credits:
+
+Developed by Caio Pedroso. 
+
+Made with Flutter, Flame and Bonfire.
+
+Audio from freesound.org.
+
+Art from itch.io.
